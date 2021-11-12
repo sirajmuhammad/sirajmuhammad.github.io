@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>Low-Power Traffic Monitoring Sensors | Siraj Muhammad, Ph.D.</title>
+  <meta name="description" content="">
+
+  <link rel="shortcut icon" href="/assets/img/favicon.ico">
+
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="canonical" href="/research/ivccs/">
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    
+    <a class="header-logo" href="/"></a>
+    
+
+    <nav class="site-nav">
+      <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+      <div class="trigger">
+
+
+		
+        <!-- Research -->
+        <a class="page-link" href="/research/">research</a>
+		
+        <!-- Publications -->
+        <a class="page-link" href="/publications/">publications</a>
+		
+        <!-- CV link -->
+        <a class="page-link" href="/resume/" target="_blank">resume</a>
+		
+        <!-- Blog -->
+        <a class="page-link" href="/blog/">blog</a>
+		
+        <!-- Travel -->
+        <a class="page-link" href="/travel/">travel</a>
+		
+        <!-- Poetry -->
+        <a class="page-link" href="/poetry/">poetry</a>
+
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  
+  <header class="post-header">
+    <h1 class="post-title">Low-Power Traffic Monitoring Sensors</h1>
+    <h5 class="post-description"></h5>
+  </header>
+  
+
+  <article class="post-content Low-Power Traffic Monitoring Sensors clearfix">
+    <p>This is a project I have worked on as part of my master’s degree. It is an extension to a project focused on designing a low-cost, reliable, and low-power intelligent vehicle counter and classification sensor (<i>i</i>VCCS) system in which the sensor exploits the physical phenomenon of magnetic
+field disturbance caused by ferrite materials in the body of a vehicle. The sensor relies on a triaxial magnetometer to measure magnetic field before measurements are transmitted to processing platform. Previous work (i.e., first generation <i>i</i>VCCS [<i>i</i>VCCS 1<sup>st</sup>G]), proved the design concept with high accuracy and reliability. A second generation <i>i</i>VCCS (<i>i</i>VCCS 2<sup>nd</sup>G) was designed around a more powerful, 32-bit
+microcontroller equipped with an on-die digital signal processing (DSP) core. Special attention to power consumption led to the development of the new <i>i</i>VCCS 2<sup>nd</sup>G platform.</p>
+
+<p>In this project I developed several algorithms to optimize power consumption of <i>i</i>VCCS based on an event-driven methodology wherein a control block orchestrates the work of various components and subsystems. Data buffering and triggered vehicle detection techniques were developed to reduce duty cycle of corresponding components (e.g., microSD card, magnetometer, and processor execution). A sleep mode is also incorporated and activated by an artificial intelligence-enabled, reinforcement learning algorithm that utilizes the field environment to select proper processor mode (e.g., run or sleep) relative to traffic flow conditions. Sensor life was extended from 48 hours to more than 200 days when leveraging 2300 mAh battery along with algorithms and techniques introduced in this thesis.</p>
+
+<h2 id="system-overview">System Overview</h2>
+
+<p><i>i</i>VCCS 2<sup>nd</sup>G is a fully autonomous and low-power sensor. The updated <i>i</i>VCCS is carefully crafted
+in a compact design (45×30×6 mm) and combines high performance, energy-efficient components equipped with a power management subsystem for minimizing consumption
+while maintaining accurate vehicle count, logging, and speed estimation. figure 1 shows the system board and its primary components. A battery gauge monitors battery capacity and nano-power load switches placed at the power lines of certain energy-hungry sensor components (e.g., RF wireless module, GPS receiver, SD card and others) are reported to the microcontroller unit (MCU).</p>
+
+<p>The sensor is built around an ultra-low-power platform from STMicroelectronics with an ARM CORTEX-M0+ 32-bit RISC core STM32L071. Kionix KMX62 is a six degrees-of-freedom magnetometer/accelerometer inertial sensor system that senses changes in the magnetic flux of the earth’s surface when vehicles enter the vicinity. KMX62 is a reliable and power-efficient sensor, consuming 395 μA at high-resolution mode and 1 μA in standby mode. Magnetometer full-scale range is ±1200 μT, and digital bit depth is 16 bits, resulting in a magnetic sensitivity of ±0.0366 µT, which was ±0.1 µT in <i>i</i>VCCS 1<sup>st</sup>G.</p>
+
+<p>The system integrates a microSD card  slot  used  for raw data acquisition (e.g., vehicle magnetic signature and accelerometer data) and timestamps of vehicle arrival and departure, as well as status messages. The microSD card is connected to the microcontroller through serial peripheral interface (SPI). An on-board 64 Mb serial NOR Flash memory serves as a secondary storage medium. Macronix’s MX25R64 is an ultra-low-power CMOS flash memory with minimum of 100,000 erase/program cycles and 20-year   data retention; it features a typical standby current of 5 µA, a maximum 4 mA read current, and 6 mA write current.</p>
+
+<div class="img_row">
+    <img class="col three left" src="/assets/img/projects/ivccs/1.png" title="iVCCS" />
+</div>
+<div class="col three caption">
+    Figure 1. Overview of the <i>i</i>VCCS components.
+</div>
+
+<h2 id="system-algorithms">System Algorithms</h2>
+
+<p>Here, techniques were developed to further optimize sensor operations utilizing interrupts instead of a polling methodology for reducing duty cycle.</p>
+
+<h3 id="data-buffering-technique">Data Buffering Technique</h3>
+
+<p>microSD cards are energy inefficient and counter intuitive to the low power paradigm due to the fact that they simply dump data and messages directly to the card. According to SanDisk microSD card specifications, Read and Write procedures can take up to 100 mA in current consumption. Notably, it is impractical to turn the card on and off for each detected vehicle due to the time delay required for initializing the card each time it is powered on. Specifications also refer to an
+automatic sleep feature wherein the cards enter sleep mode when commands have not been received within 5 ms. Although cards consume 350 µA in this mode, this amount is inefficient. On-board ultra-low-power flash memory is used to buffer data before shifting it to the microSD card, primarily because it excels in energy efficiency and read/write performance when compared with SD cards. As such, this type of memory is suitable for instantaneous data logging.</p>
+
+<h3 id="triggered-vehicle-detection">Triggered Vehicle Detection</h3>
+
+<p>Typically, and in accordance with the configured data rate, the magnetometer regularly interrupts the microcontroller when a new sample is acquired in the buffer (i.e., Data Ready Interrupt [DRI]). Desired behavior interrupts MCU only when a vehicle is approaching and triggers the detection algorithm. In addition to DRI, KMX62 magnetometer has two other interrupts, Magnetometer Motion Interrupt (MMI), and Buffer Full Interrupt (BFI). MMI is issued when the difference between
+two consecutive samples on one axis reaches a programmed threshold in a specific direction (e.g., increasing or decreasing) and remains above that threshold for a specified number of samples (i.e., time). KMX62 also has a buffer capable of holding 64 samples of components x, y, and z.</p>
+
+<div class="img_row">
+    <img class="col" style="width: 80%" src="/assets/img/projects/ivccs/2.png" title="iVCCS" />
+</div>
+<div class="col three caption">
+    Figure 2. KMX62 MMI and BFI interrupts operation.
+</div>
+
+<p>Buffer functions in triggered mode. Given that a physical interrupt is caused by a digital engine (e.g., magnetometer or accelerometer), a trigger event is asserted and <code class="language-plaintext highlighter-rouge">SMP_TH</code> number of samples prior to the event are retained. Sample collection continues until the buffer is full. Data is reported in chronological order. figure 2 illustrates this mechanism. MMI is configured to trigger the buffer, and a BFI is routed to the MCU through one of the GPIOs. <code class="language-plaintext highlighter-rouge">SMP_TH</code> is set to 63,
+which causes KMX62 to immediately interrupt the MCU after the first sample received at the event of an MMI interrupt when a vehicle approaches.</p>
+
+<h3 id="communication-scheme">Communication Scheme</h3>
+
+<p>The primary role of the RF front-end in this system is to report data (i.e., count and timestamps) to an access point (AP). This function is completed once each day, typically at midnight. However, the system is also capable of interacting with user requests. Notably, the ZigBee module is one of the most power-consuming units on board, and constantly turning it on will quickly deplete the battery. MCU is not required to use RF interface, except for initial status reporting after sensor is initialized and data reporting at midnight. To accommodate user/AP requests, MCU must activate the ZigBee module for one minute, during which time it sends a
+status message reporting battery charge level and number of vehicles counted. Given that a command is received within this minute, the timer is reset, allowing for additional commands. If none are received, RF module is shut down.</p>
+
+<h3 id="system-level-power-consumption-analysis">System Level Power Consumption Analysis</h3>
+
+<p>The system’s power consumption is empirically analyzed by dividing the sensor’s one-hour cycle into states, and then measuring the amount of current drained in each state. Figure 3 depicts sensor current consumption for various states.</p>
+
+<div class="img_row">
+    <img class="col three left" src="/assets/img/projects/ivccs/3.png" title="iVCCS" />
+</div>
+<div class="col three caption">
+    Figure 3. Current consumption at various states.
+</div>
+
+<p>Average current for one hour is found to be 4.48 mA, resulting in 411 hours of operation on a 2300 mAh battery with up to an 80% derating factor.</p>
+
+<h2 id="reinforcement-learning-for-ivccs">Reinforcement Learning for <i>i</i>VCCS</h2>
+
+<p>Although power consumption was targeted for enhancement by incorporating the ARM Cortex-M0 microprocessor sleep mode, doing so caused misdetections and/or double counting for vehicles traveling with less than a 2-second following distance. This is attributed to a long wakeup time from sleep mode once a passing vehicle was detected. Nevertheless, in a low-traffic situation where vehicle following distance was more than 5 seconds, sleep mode is expected to perform flawlessly and to conserve power. A dynamic power management scheme is planned to manage this process.</p>
+
+<p>The proposed system is modeled as a Markov Decision Process with four-state space: High-Power High-Traffic (HPHT), High-Power Low-Traffic (HP-LT), Low-Power High Traffic (LP-HT), and Low-Power Low-Traffic (LP-LT). Figure 4 shows the system state transition diagram. Solid arrows represent agent transitions. Dashed arrows represent environment transitions. The agent (i.e., <i>i</i>VCCS) is not penalized for environment transitions.</p>
+
+<div class="img_row">
+    <img class="col" style="width: 75%;" src="/assets/img/projects/ivccs/4.png" title="iVCCS" />
+</div>
+<div class="col three caption">
+    Figure 4. State transition diagram.
+</div>
+
+<p>The agent can perform two actions, namely switching to high-power mode or to low-power mode. Given that the agent takes action, a corresponding reward is given and a new experience (e.g., tuple of state, action, reward <code class="language-plaintext highlighter-rouge">&lt;s, a, r&gt;</code>) is formed.</p>
+
+<p>The system’s power consumption was analyzed with the RL algorithm employed, and the average current for one hour was found to be 3.71 mA. Given a 2300 mAh battery, battery life is extended to 496 hours.</p>
+
+<h2 id="further-details">Further Details</h2>
+
+<p>For more information on the project, readers are encouraged to refer to <a class="citation" href="#Muhammad2018a">[1], [2]</a>.</p>
+
+<h3 id="references">References</h3>
+
+<ol class="bibliography"><li>
+
+<div id="Muhammad2018a">
+  
+    <span class="title">Ultra-Low Power IoT Traffic Monitoring System</span>
+    <span class="author">
+      
+        
+          
+            
+              <em>Muhammad, Siraj</em>,
+            
+          
+        
+      
+        
+          
+            
+              
+                <a href="https://scholar.google.com/citations?user=MrTxLgwAAAAJ&amp;hl=en" target="_blank">Refai, Hazem</a>, 
+              
+            
+          
+        
+      
+        
+          
+            
+              
+                and Blakeslee, Matthew
+              
+            
+          
+        
+      
+    </span>
+
+    <span class="periodical">
+    
+      <em>In 2018 IEEE 88th Vehicular Technology Conference (VTC 2018-Fall)</em>
+    
+    
+      2018
+    
+    </span>
+  
+
+  <span class="links">
+  
+    [<a class="abstract">Abstract</a>]
+  
+  
+  
+    [<a href="https://ieeexplore.ieee.org/abstract/document/8690788" target="_blank">HTML</a>]
+  
+  
+    [<a href="/assets/pdf/ivccs.pdf" target="_blank">PDF</a>]
+  
+  
+  
+  
+  
+  </span>
+
+  <!-- Hidden abstract block -->
+  
+  <span class="abstract hidden">
+    <p>Given the sizable anticipated proliferation of Internet of Things (IoT) devices, Forrester Research forecasts that the fleet management and transportation industry sectors will enjoy more growth than others. This may come as no surprise, since infrastructure (eg, roadways, bridges, airports) is a prime candidate for sensor integration to provide real-time measurements and to support intelligent decisions. The predicted increase of deployed devices makes it difficult to calculate the amount of energy required for these functions. Current estimates suggest that 2 to 4% of worldwide carbon emissions can be attributed to the information and communication industry [1]. This paper presents novel algorithms designed to optimize power consumption of an intelligent vehicle counter and classifier sensors. Each was based on an event-driven methodology wherein a control block orchestrates the work of different components and subsystems. System duty-cycle is reduced through several techniques, and a reinforcement learning algorithm is introduced to control the system power policy, according to the traffic environment. Battery life for a sensor supported by a 2300 mAh battery was extended from 48-hour, adopted all-on policy to more than 400 days when leveraging the algorithms and techniques presented in this work.</p>
+  </span>
+  
+</div>
+</li>
+<li>
+
+<div id="Muhammad2018">
+  
+    <span class="title">Intelligent Power Aware Algorithms for Traffic Sensors</span>
+    <span class="author">
+      
+        
+          
+            <em>Muhammad, Siraj</em>
+          
+        
+      
+    </span>
+
+    <span class="periodical">
+    
+    
+      2018
+    
+    </span>
+  
+
+  <span class="links">
+  
+    [<a class="abstract">Abstract</a>]
+  
+  
+  
+    [<a href="https://shareok.org/handle/11244/301379" target="_blank">HTML</a>]
+  
+  
+    [<a href="/assets/pdf/2018_Muhammad_Siraj_Thesis.pdf" target="_blank">PDF</a>]
+  
+  
+  
+  
+  
+  </span>
+
+  <!-- Hidden abstract block -->
+  
+  <span class="abstract hidden">
+    <p>The Internet of Things (IoT) is reshaping our world. Soon our world will be based on smart technologies. According to IHS Markit forecasts, the number of connected devices will grow from 15.4 billion in 2015 to 30.7 billion in 2020. Forrester Research predicts that fleet management and the transportation sectors lead others in IoT growth. This may come as no surprise, since the infrastructure (roadways, bridges, airports, etc.) is a prime candidate for sensor integration, providing real-time measurements to support intelligent decisions. The energy cost required to support the anticipated enormous number of predicted deployed devices is unknown. Currently, experts estimate that 2 to 4% of worldwide carbon emissions can be attributed to power consumption in the information and communication industry [1]. This thesis presents several algorithms to optimize power consumption of an intelligent vehicle counter and classifier sensor (iVCCS) based on an event-driven methodology wherein a control block orchestrates the work of various components and subsystems. Data buffering and triggered vehicle detection techniques were developed to reduce duty cycle of corresponding components (e.g., microSD card, magnetometer, and processor execution). A sleep mode is also incorporated and activated by an artificial intelligence-enabled, reinforcement learning algorithm that utilizes the field environment to select proper processor mode (e.g., run or sleep) relative to traffic flow conditions. Sensor life was extended from 48 hours to more than 200 days when leveraging 2300 mAh battery along with algorithms and techniques introduced in this thesis.</p>
+  </span>
+  
+</div>
+</li></ol>
+
+
+  </article>
+
+  
+  
+  
+
+</div>
+
+      </div>
+    </div>
+
+    <footer>
+
+  <div align="center" class="wrapper">
+    &copy; Copyright 2021 Siraj Muhammad, Ph.D.
+    
+    
+  </div>
+
+</footer>
+
+
+    <!-- Load jQuery -->
+<script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
+
+<!-- Load Common JS -->
+<script src="/assets/js/common.js"></script>
+
+
+<!-- Load KaTeX -->
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js"></script>
+<script src="/assets/js/katex.js"></script>
+
+
+
+
+<!-- Include custom icon fonts -->
+<link rel="stylesheet" href="/assets/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="/assets/css/academicons.min.css">
+
+
+
+
+  </body>
+
+</html>
